@@ -119,7 +119,6 @@
       <div class="space-x-8">
         <a href="#projects" class="accent-color">Projects</a>
         <a href="#experience" class="accent-color">Experience</a>
-        <a href="#contact" class="accent-color">Contact</a>
       </div>
     </nav>
   </header>
@@ -251,44 +250,10 @@
         console.error('Playback error:', error);
       });
     });
-    
     // Attempt to autoplay the audio; if it fails, the button remains visible.
     audio.play().catch((error) => {
       console.log('Autoplay prevented, user interaction is required.', error);
     });
-
-    // Form submission (Modified)
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(contactForm);
-
-      try {
-        const response = await fetch('https://formspree.io/f/your-form-id', { // Replace with your Formspree form ID
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-          formStatus.textContent = 'Message sent successfully! 🚀';
-          contactForm.reset();
-        } else {
-          const errorData = await response.json(); // Try to get error details
-          formStatus.textContent = `Oops! There was a problem: ${errorData.message || response.statusText}`; // Display error message or status
-          console.error("Form submission error:", errorData); // Log the full error for debugging
-        }
-      } catch (error) {
-        formStatus.textContent = 'Network error. Please check your connection.';
-        console.error("Form submission error:", error); // Log the error for debugging
-      }
-
-      formStatus.classList.remove('hidden');
-      setTimeout(() => formStatus.classList.add('hidden'), 5000);
-    });
-    
   </script>
 </body>
 </html>
