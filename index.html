@@ -38,8 +38,10 @@
             --accent: #7c3aed;
             --hover: #6d28d9;
         }
+        /* Existing styles */
         body {
-            background-color: var(--bg-primary);
+            /* If you want the animated background to be fully visible, you can remove or adjust this: */
+            /* background-color: var(--bg-primary); */
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -67,9 +69,49 @@
         .accent-bg:hover {
             background-color: var(--hover);
         }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hide the audio player */
+        #background-music {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Background Music (hidden player) -->
+    <audio id="background-music" autoplay loop>
+        <source src="music-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Optional: Play Music Button (if autoplay is blocked) -->
+    <!--
+    <div class="fixed bottom-4 left-4 z-50">
+        <button onclick="document.getElementById('background-music').play()" class="p-2 rounded bg-custom-secondary shadow-lg">
+            Play Music
+        </button>
+    </div>
+    -->
+
     <!-- Theme Toggle -->
     <div class="fixed top-4 right-4 z-50">
         <button onclick="toggleTheme()" class="p-2 rounded-full bg-custom-secondary shadow-lg">
