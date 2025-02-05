@@ -42,6 +42,7 @@
     body {
       color: var(--text-primary);
       transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #FFFDD0; /* Solid cream background by default */
     }
     .bg-custom-secondary {
       background-color: var(--bg-secondary);
@@ -68,8 +69,8 @@
       background-color: var(--hover);
     }
 
-    /* Animated Background */
-    body::before {
+    /* Gradient Background (activated when .groovy is added to the body) */
+    body.groovy::before {
       content: "";
       position: fixed;
       top: 0;
@@ -269,6 +270,8 @@
       audio.play().then(() => {
         // Hide the play button after playback starts
         document.getElementById('play-music-container').style.display = 'none';
+        // Add the "groovy" class to the body to activate the gradient background
+        document.body.classList.add('groovy');
       }).catch((error) => {
         console.error('Playback error:', error);
       });
