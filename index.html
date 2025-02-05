@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Stern - Electrical Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .serif-font {
+            font-family: "Playfair Display", Georgia, serif;
+        }
+        .content-font {
+            font-family: "Source Sans Pro", sans-serif;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        /* Light mode */
+        .light {
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #ffffff;
+            --text-primary: #1a365d;
+            --text-secondary: #4a5568;
+            --accent: #5a67d8;
+            --hover: #4c51bf;
+        }
+        /* Dark mode */
+        .dark {
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --accent: #7c3aed;
+            --hover: #6d28d9;
+        }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .bg-custom-secondary {
+            background-color: var(--bg-secondary);
+            transition: background-color 0.3s ease;
+        }
+        .text-custom-secondary {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .accent-color {
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+        .accent-color:hover {
+            color: var(--hover);
+        }
+        .accent-border {
+            border-color: var(--accent);
+        }
+        .accent-bg {
+            background-color: var(--accent);
+        }
+        .accent-bg:hover {
+            background-color: var(--hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="p-2 rounded-full bg-custom-secondary shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-custom-secondary shadow-sm sticky top-0 z-40">
+        <nav class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="serif-font text-2xl font-bold">Henry Stern</h1>
+            <div class="space-x-8">
+                <a href="#projects" class="accent-color">Projects</a>
+                <a href="#experience" class="accent-color">Experience</a>
+                <a href="#contact" class="accent-color">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+        <h2 class="serif-font text-5xl font-bold mb-6">Electrical Engineer</h2>
+        <p class="text-xl text-custom-secondary max-w-2xl">Rose-Hulman Institute of Technology student specializing in PCB design, 
+        circuit design, and embedded systems. Experienced in audio engineering and automation systems.</p>
+        <div class="mt-6 text-custom-secondary">
+            <p>GPA: 3.98/4.0 | Expected Graduation: May 2026</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-6xl mx-auto px-4 py-16">
+        <h3 class="serif-font text-3xl font-bold mb-12">Featured Projects</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Tic-Tac-Toe -->
+            <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+                <img src="/api/placeholder/400/300" alt="Tic-Tac-Toe Project" class="w-full h-48 object-cover rounded-md mb-4">
+                <h4 class="serif-font text-xl font-bold mb-2">Interactive Tic-Tac-Toe</h4>
+                <p class="text-custom-secondary mb-4">MSP432-based game featuring NeoPixel LED matrix, custom PCB design, and AI opponent. Includes LCD display and audio feedback with the Scooby Doo theme song.</p>
+                <div class="text-sm text-custom-secondary mt-2">
+                    <p>Technologies: MSP432, Embedded C, Custom PCB</p>
+                </div>
+            </div>
+
+            <!-- Smart Window -->
+            <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+                <img src="/api/placeholder/400/300" alt="Electrochromic Window" class="w-full h-48 object-cover rounded-md mb-4">
+                <h4 class="serif-font text-xl font-bold mb-2">Electrochromic Smart Window</h4>
+                <p class="text-custom-secondary mb-4">Arduino-controlled smart window with variable opacity, optimized for low power consumption and rapid response times.</p>
+                <div class="text-sm text-custom-secondary mt-2">
+                    <p>Technologies: Arduino, C++, LTSpice</p>
+                </div>
+            </div>
+
+            <!-- Genetic Algorithm -->
+            <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+                <img src="/api/placeholder/400/300" alt="Genetic Algorithm" class="w-full h-48 object-cover rounded-md mb-4">
+                <h4 class="serif-font text-xl font-bold mb-2">Genetic Algorithm Visualizer</h4>
+                <p class="text-custom-secondary mb-4">Interactive Java application demonstrating genetic algorithms with musical and graphical fitness representations.</p>
+                <a href="https://docs.google.com/presentation/d/1Y_uFDPHOarpH5fm88qthDEvm9w0ocnJOzOQddloEJEc/edit?usp=sharing" target="_blank" class="accent-color">View Presentation →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="max-w-6xl mx-auto px-4 py-16 bg-custom-secondary">
+        <h3 class="serif-font text-3xl font-bold mb-12">Experience</h3>
+        <div class="space-y-12">
+            <div class="border-l-4 accent-border pl-6">
+                <h4 class="serif-font text-xl font-bold">Electrical Engineering Intern</h4>
+                <p class="text-custom-secondary">Linn Products Ltd. | June 2024 - Aug 2024</p>
+                <ul class="mt-4 space-y-2 text-custom-secondary">
+                    <li>• Engineered high-fidelity phono stages for DS Audio cartridges</li>
+                    <li>• Conducted LTSpice analyses for cartridge current sources</li>
+                    <li>• Designed circuit schematics and PCBs in Altium Designer</li>
+                    <li>• Verified system performance with Audio Precision APx555 analyzer</li>
+                </ul>
+            </div>
+            <div class="border-l-4 accent-border pl-6">
+                <h4 class="serif-font text-xl font-bold">Controls and Electrical Engineering Intern</h4>
+                <p class="text-custom-secondary">General Motors Co. | June 2023 - Aug 2023</p>
+                <ul class="mt-4 space-y-2 text-custom-secondary">
+                    <li>• Developed employee badge-reading system using RS Logix 5000</li>
+                    <li>• Integrated die-cast machine process tag data into database</li>
+                    <li>• Created interactive interface screens in FactoryTalk View</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="mt-16">
+            <h3 class="serif-font text-2xl font-bold mb-6">Technical Skills</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-bold mb-2">Software</h4>
+                    <p class="text-custom-secondary">Altium Designer, LTSpice, PSpice, MATLAB, LabVIEW, Maple, Java, Python, Embedded C, Verilog, Quartus, Audio Precision, RS Logix 5000, FactoryTalk View</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Technical</h4>
+                    <p class="text-custom-secondary">PCB Design, Circuit Design and Simulation, Automation Systems, Data Analysis, Noise Optimization, Signal Processing, Soldering and Oscilloscopes, Embedded Systems, Digital Logic</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-16">
+        <h3 class="serif-font text-3xl font-bold mb-12">Get in Touch</h3>
+        <div class="bg-custom-secondary p-8 rounded-lg shadow-md">
+            <form action="mailto:solohstern@gmail.com" method="POST" enctype="text/plain" class="space-y-6">
+                <div>
+                    <label class="block serif-font mb-2">Name</label>
+                    <input type="text" class="w-full p-2 border rounded-md bg-custom-secondary" required>
+                </div>
+                <div>
+                    <label class="block serif-font mb-2">Email</label>
+                    <input type="email" class="w-full p-2 border rounded-md bg-custom-secondary" required>
+                </div>
+                <div>
+                    <label class="block serif-font mb-2">Message</label>
+                    <textarea class="w-full p-2 border rounded-md h-32 bg-custom-secondary" required></textarea>
+                </div>
+                <button class="accent-bg text-white px-6 py-2 rounded-md transition-colors">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-custom-secondary mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <div class="flex justify-between items-center">
+                <p class="serif-font text-xl">Henry Stern</p>
+                <div class="space-x-6">
+                    <a href="https://linkedin.com/in/henry-stern" target="_blank" class="accent-color">LinkedIn</a>
+                    <a href="mailto:solohstern@gmail.com" class="accent-color">Email</a>
+                    <a href="tel:669-291-9214" class="accent-color">669-291-9214</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light');
+        }
+    </script>
+</body>
+</html>
