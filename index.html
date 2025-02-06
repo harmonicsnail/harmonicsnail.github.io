@@ -1,160 +1,259 @@
-import React, { useState } from 'react';
-import { Building2, Calendar, ChevronRight } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Henry Stern - Electrical Engineer</title>
+  <link rel="icon" href="SDG_logo.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .serif-font {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+    .content-font {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+    /* Light mode (unused) */
+    .light {
+      --bg-primary: #f0f4f8;
+      --bg-secondary: #ffffff;
+      --text-primary: #1a365d;
+      --text-secondary: #4a5568;
+      --accent: #5a67d8;
+      --hover: #4c51bf;
+    }
+    /* Dark mode */
+    .dark {
+      --bg-primary: #1a202c;
+      --bg-secondary: #2d3748;
+      --text-primary: #f7fafc;
+      --text-secondary: #e2e8f0;
+      --accent: #7c3aed;
+      --hover: #6d28d9;
+    }
+    /* Existing styles */
+    body {
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #372766;
+    }
+    .bg-custom-secondary {
+      background-color: var(--bg-secondary);
+      transition: background-color 0.3s ease;
+    }
+    .text-custom-secondary {
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+    .accent-color {
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    .accent-color:hover {
+      color: var(--hover);
+    }
+    .accent-border {
+      border-color: var(--accent);
+    }
+    .accent-bg {
+      background-color: var(--accent);
+    }
+    .accent-bg:hover {
+      background-color: var(--hover);
+    }
 
-const Resume = () => {
-  const [activeSection, setActiveSection] = useState('about');
-  const [expandedExperience, setExpandedExperience] = useState(null);
+    /* Gradient Background (activated when .groovy is added to the body) */
+    body.groovy::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(45deg, #8e44ad, #3498db, #8e44ad, #3498db);
+      background-size: 400% 400%;
+      animation: gradientAnimation 8s ease infinite;
+    }
 
-  return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      {/* Previous nav and hero sections remain the same */}
-      <nav className="sticky top-0 bg-slate-800 shadow-lg">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Henry Stern</h1>
-            <div className="flex gap-6">
-              {['About', 'Projects', 'Experience', 'Skills'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => setActiveSection(section.toLowerCase())}
-                  className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                    activeSection === section.toLowerCase()
-                      ? 'bg-violet-600 text-white'
-                      : 'hover:bg-slate-700'
-                  }`}
-                >
-                  {section}
-                </button>
-              ))}
-            </div>
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Hide the audio player if needed */
+    #background-music {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only fixed top-0 left-0 bg-white p-2 z-50">Skip to main content</a>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play Music Button (visible if autoplay is blocked) -->
+  <div id="play-music-container" class="fixed bottom-4 left-4 z-50">
+    <button id="play-music" class="p-2 rounded bg-custom-secondary shadow-lg">
+      Get Groovy?!
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-custom-secondary shadow-sm sticky top-0 z-40">
+    <nav class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="serif-font text-2xl font-bold">Henry Stern</h1>
+      <div class="space-x-8">
+        <a href="#projects" class="accent-color">Projects</a>
+        <a href="#experience" class="accent-color">Experience</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+      <h2 class="serif-font text-5xl font-bold mb-6">Electrical Engineer</h2>
+      <p class="text-xl text-custom-secondary max-w-2xl">
+        Rose-Hulman Institute of Technology student specializing in PCB design, circuit design, and embedded systems. Experienced in audio engineering and automation systems.
+      </p>
+      <div class="mt-6 text-custom-secondary">
+        <p>GPA: 3.98/4.0 | Expected Graduation: May 2026</p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-6xl mx-auto px-4 py-16">
+      <h3 class="serif-font text-3xl font-bold mb-12">Featured Projects</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Tic-Tac-Toe -->
+        <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+          <img src="tictactoe.PNG" alt="Tic-Tac-Toe Project" loading="lazy" class="w-full h-48 object-cover rounded-md mb-4">
+          <h4 class="serif-font text-xl font-bold mb-2">Interactive Tic-Tac-Toe</h4>
+          <p class="text-custom-secondary mb-4">
+            MSP432-based game featuring NeoPixel LED matrix, custom PCB design, and AI opponent. Includes LCD display and audio feedback with the Scooby Doo theme song.
+          </p>
+          <div class="text-sm text-custom-secondary mt-2">
+            <p>Technologies: MSP432, Embedded C, Custom PCB</p>
           </div>
         </div>
-      </nav>
 
-      {/* Experience Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h3 className="text-3xl font-bold mb-8">Experience</h3>
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <div
-              key={exp.company}
-              className="bg-slate-800 rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/20"
-              onClick={() => setExpandedExperience(expandedExperience === index ? null : index)}
-            >
-              <div className="flex items-start justify-between cursor-pointer">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Building2 className="text-violet-400" size={20} />
-                    <h4 className="text-xl font-bold">{exp.title}</h4>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <span>{exp.company}</span>
-                    <span>•</span>
-                    <div className="flex items-center gap-1">
-                      <Calendar size={16} />
-                      <span>{exp.date}</span>
-                    </div>
-                  </div>
-                </div>
-                <ChevronRight
-                  className={`transform transition-transform duration-300 ${
-                    expandedExperience === index ? 'rotate-90' : ''
-                  }`}
-                />
-              </div>
-              
-              <div className={`mt-4 space-y-2 transition-all duration-300 ${
-                expandedExperience === index ? 'block' : 'hidden'
-              }`}>
-                {exp.responsibilities.map((resp, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <span className="text-violet-400 mt-1">•</span>
-                    <p className="text-slate-300">{resp}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Skills Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-6">Technical Skills</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {Object.entries(skills).map(([category, skillList]) => (
-              <div key={category} className="bg-slate-800 p-6 rounded-lg">
-                <h4 className="font-bold mb-4">{category}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {skillList.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 text-sm bg-violet-600/20 rounded-full hover:bg-violet-600/40 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+        <!-- Smart Window -->
+        <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+          <img src="smartWindow.jpg" alt="Electrochromic Smart Window" loading="lazy" class="w-full h-48 object-cover rounded-md mb-4">
+          <h4 class="serif-font text-xl font-bold mb-2">Electrochromic Smart Window</h4>
+          <p class="text-custom-secondary mb-4">
+            Arduino-controlled smart window with variable opacity, optimized for low power consumption and rapid response times.
+          </p>
+          <div class="text-sm text-custom-secondary mt-2">
+            <p>Technologies: Arduino, C++, LTSpice</p>
           </div>
         </div>
-      </section>
+
+        <!-- Genetic Algorithm -->
+        <div class="project-card bg-custom-secondary p-6 rounded-lg shadow-md">
+          <img src="garp.PNG" alt="Genetic Algorithm Visualizer" loading="lazy" class="w-full h-48 object-cover rounded-md mb-4">
+          <h4 class="serif-font text-xl font-bold mb-2">Genetic Algorithm Visualizer</h4>
+          <p class="text-custom-secondary mb-4">
+            Interactive Java application demonstrating genetic algorithms with musical and graphical fitness representations.
+          </p>
+          <a href="https://docs.google.com/presentation/d/1Y_uFDPHOarpH5fm88qthDEvm9w0ocnJOzOQddloEJEc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="accent-color">
+            View Presentation →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="max-w-6xl mx-auto px-4 py-16 bg-custom-secondary">
+      <h3 class="serif-font text-3xl font-bold mb-12">Experience</h3>
+      <div class="space-y-12">
+        <div class="border-l-4 accent-border pl-6">
+          <h4 class="serif-font text-xl font-bold">Electrical Engineering Intern</h4>
+          <p class="text-custom-secondary">Linn Products Ltd. | June 2024 - Aug 2024</p>
+          <ul class="mt-4 space-y-2 text-custom-secondary">
+            <li>• Engineered high-fidelity phono stages for DS Audio cartridges</li>
+            <li>• Conducted LTSpice analyses for cartridge current sources</li>
+            <li>• Designed circuit schematics and PCBs in Altium Designer</li>
+            <li>• Verified system performance with Audio Precision APx555 analyzer</li>
+          </ul>
+        </div>
+        <div class="border-l-4 accent-border pl-6">
+          <h4 class="serif-font text-xl font-bold">Controls and Electrical Engineering Intern</h4>
+          <p class="text-custom-secondary">General Motors Co. | June 2023 - Aug 2023</p>
+          <ul class="mt-4 space-y-2 text-custom-secondary">
+            <li>• Developed employee badge-reading system using RS Logix 5000</li>
+            <li>• Integrated die-cast machine process tag data into database</li>
+            <li>• Created interactive interface screens in FactoryTalk View</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="mt-16">
+        <h3 class="serif-font text-2xl font-bold mb-6">Technical Skills</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="font-bold mb-2">Software</h4>
+            <p class="text-custom-secondary">
+              Altium Designer, LTSpice, PSpice, MATLAB, LabVIEW, Maple, Java, Python, Embedded C, Verilog, Quartus, Audio Precision, RS Logix 5000, FactoryTalk View
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-2">Technical</h4>
+            <p class="text-custom-secondary">
+              PCB Design, Circuit Design and Simulation, Automation Systems, Data Analysis, Noise Optimization, Signal Processing, Soldering and Oscilloscopes, Embedded Systems, Digital Logic
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-custom-secondary mt-16">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="flex justify-between items-center">
+        <p class="serif-font text-xl">Henry Stern</p>
+        <div class="space-x-6">
+          <a href="https://linkedin.com/in/henry-stern" target="_blank" rel="noopener noreferrer" class="accent-color">LinkedIn</a>
+          <a href="mailto:solohstern@gmail.com" class="accent-color">Email</a>
+        </div>
+      </div>
     </div>
-  );
-};
+  </footer>
 
-const experiences = [
-  {
-    title: "Electrical Engineering Intern",
-    company: "Linn Products Ltd.",
-    date: "June 2024 - Aug 2024",
-    responsibilities: [
-      "Engineered high-fidelity phono stages for DS Audio cartridges",
-      "Conducted LTSpice analyses for cartridge current sources",
-      "Designed circuit schematics and PCBs in Altium Designer",
-      "Verified system performance with Audio Precision APx555 analyzer"
-    ]
-  },
-  {
-    title: "Controls and Electrical Engineering Intern",
-    company: "General Motors Co.",
-    date: "June 2023 - Aug 2023",
-    responsibilities: [
-      "Developed employee badge-reading system using RS Logix 5000",
-      "Integrated die-cast machine process tag data into database",
-      "Created interactive interface screens in FactoryTalk View"
-    ]
-  }
-];
-
-const skills = {
-  "Software": [
-    "Altium Designer",
-    "LTSpice",
-    "PSpice",
-    "MATLAB",
-    "LabVIEW",
-    "Maple",
-    "Java",
-    "Python",
-    "Embedded C",
-    "Verilog",
-    "Quartus",
-    "Audio Precision",
-    "RS Logix 5000",
-    "FactoryTalk View"
-  ],
-  "Technical": [
-    "PCB Design",
-    "Circuit Design",
-    "Automation Systems",
-    "Data Analysis",
-    "Noise Optimization",
-    "Signal Processing",
-    "Soldering",
-    "Embedded Systems",
-    "Digital Logic"
-  ]
-};
-
-export default Resume;
+  <script>
+    const audio = document.getElementById('background-music');
+    const playButton = document.getElementById('play-music');
+    playButton.addEventListener('click', () => {
+      audio.play().then(() => {
+        // Hide the play button after playback starts
+        document.getElementById('play-music-container').style.display = 'none';
+        // Add the "groovy" class to the body to activate the gradient background
+        document.body.classList.add('groovy');
+      }).catch((error) => {
+        console.error('Playback error:', error);
+      });
+    });
+    // Attempt to autoplay the audio; if it fails, the button remains visible.
+    audio.play().catch((error) => {
+      console.log('Autoplay prevented, user interaction is required.', error);
+    });
+  </script>
+</body>
+</html>
