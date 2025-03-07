@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const elementTop = element.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
             
-            if (elementTop < windowHeight - 100) {
+            if (elementTop < windowHeight) {
                 element.classList.add('reveal');
             }
         });
