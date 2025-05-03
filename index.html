@@ -5,90 +5,334 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Henry Stern | Electrical Engineer</title>
-  <!-- Forest-themed palette -->
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
 <body>
+
   <!-- Header with logo -->
   <header class="site-header">
     <div class="container">
-      <!-- Logo image -->
-      <img src="assets/logo.png" alt="HS Logo" class="logo">
-      <!-- Music toggle -->
-      <button id="music-toggle" class="music-toggle" aria-label="Toggle music">♪</button>
+      <!-- Logo image with animated pulse -->
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="HS Logo" class="logo">
+        <div class="logo-pulse"></div>
+      </div>
+      
+      <!-- Navigation -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Music toggle with animated icon -->
+      <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+        <span class="music-icon">♪</span>
+      </button>
     </div>
   </header>
 
   <!-- Background audio -->
   <audio id="bg-music" src="assets/bg-music.mp3" loop preload="auto"></audio>
 
-  <!-- FFT Visualization Canvas -->
-  <canvas id="fft-canvas"></canvas>
+  <!-- FFT Visualization Canvas with controls -->
+  <div class="visualizer-container">
+    <canvas id="fft-canvas"></canvas>
+    <div class="audio-controls">
+      <div class="control">
+        <label for="bass-control">Bass</label>
+        <input type="range" id="bass-control" min="0" max="100" value="50">
+      </div>
+      <div class="control">
+        <label for="mid-control">Mid</label>
+        <input type="range" id="mid-control" min="0" max="100" value="50">
+      </div>
+      <div class="control">
+        <label for="treble-control">Treble</label>
+        <input type="range" id="treble-control" min="0" max="100" value="50">
+      </div>
+    </div>
+  </div>
 
   <main class="container">
-    <!-- About Section -->
-    <section id="about">
-      <img src="assets/profile.jpg" alt="Profile Picture" class="profile-pic">
-      <h1>Henry Stern</h1>
-      <p class="subtitle">Electrical Engineer</p>
-      <p>Passionate about audio electronics, PCB design, and signal processing. Always learning, always curious.</p>
+    <!-- About Section with animated typing -->
+    <section id="about" class="card-section">
+      <div class="profile-card">
+        <img src="assets/profile.jpg" alt="Profile Picture" class="profile-pic">
+        <div class="profile-text">
+          <h1>Henry Stern</h1>
+          <p class="subtitle">Electrical Engineer</p>
+          <p id="typing-text">Passionate about audio electronics, PCB design, and signal processing. Always learning, always curious.</p>
+        </div>
+      </div>
+      
+      <!-- Current status/mood -->
+      <div class="status-card">
+        <h3>Currently...</h3>
+        <ul class="status-list">
+          <li><span class="status-icon">📚</span> Reading: "Designing Audio Power Amplifiers" by Bob Cordell</li>
+          <li><span class="status-icon">🔧</span> Building: Tube Preamp with Remote Control</li>
+          <li><span class="status-icon">🎵</span> Listening to: Jazz & Electronic</li>
+        </ul>
+      </div>
     </section>
+    
     <!-- Education Section -->
-    <section id="education">
+    <section id="education" class="card-section">
       <h2><img src="assets/icons/education.svg" alt="Education" class="icon">Education</h2>
-      <p><strong>B.S. Electrical Engineering</strong>, Rose-Hulman Institute of Technology (May 2026)<br>
-      GPA: 3.98/4.0<br>
-      Minors: Physics &amp; Music; Certificate: Semiconductor Materials &amp; Devices</p>
+      <div class="education-card">
+        <div class="school-logo">
+          <img src="assets/rhit-logo.png" alt="Rose-Hulman Logo">
+        </div>
+        <div class="education-details">
+          <h3>B.S. Electrical Engineering</h3>
+          <p>Rose-Hulman Institute of Technology (May 2026)</p>
+          <p class="education-stats">GPA: 3.98/4.0</p>
+          <p>Minors: Physics &amp; Music</p>
+          <p>Certificate: Semiconductor Materials &amp; Devices</p>
+        </div>
+      </div>
     </section>
-    <!-- Skills Section -->
-    <section id="skills">
+    
+    <!-- Skills Section with visual meter -->
+    <section id="skills" class="card-section">
       <h2><img src="assets/icons/skills.svg" alt="Skills" class="icon">Skills</h2>
-      <ul>
-        <li><strong>Software:</strong> Altium, LTSpice, MATLAB, LabVIEW, Java, Python, Embedded C</li>
-        <li><strong>Technical:</strong> PCB design, automation, signal processing, embedded systems</li>
-        <li><strong>Activities:</strong> IEEE HKN, Synth Club, Jazz Band</li>
-      </ul>
+      
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Software</h3>
+          <div class="skill-item">
+            <span>Altium</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>LTSpice</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>MATLAB</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>Python</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>Embedded C</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Technical</h3>
+          <div class="skill-item">
+            <span>PCB Design</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 92%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>Signal Processing</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>Circuit Design</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span>Embedded Systems</span>
+            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activities">
+        <h3>Activities</h3>
+        <div class="activity-icons">
+          <div class="activity-item">
+            <span class="activity-icon">🔌</span>
+            <span>IEEE HKN</span>
+          </div>
+          <div class="activity-item">
+            <span class="activity-icon">🎹</span>
+            <span>Synth Club</span>
+          </div>
+          <div class="activity-item">
+            <span class="activity-icon">🎷</span>
+            <span>Jazz Band</span>
+          </div>
+        </div>
+      </div>
     </section>
+    
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" class="card-section">
       <h2><img src="assets/icons/experience.svg" alt="Experience" class="icon">Experience</h2>
-      <div class="role">
-        <h3>Linn Products Ltd.<br><small>Jun–Aug 2024, Glasgow, Scotland</small></h3>
-        <ul>
-          <li>Engineered low-noise phono stages &amp; DC bias control</li>
-          <li>Ran LTSpice analyses for noise &amp; transient performance</li>
-          <li>Designed PCBs in Altium; verified with Audio Precision APx555</li>
-        </ul>
-      </div>
-      <div class="role">
-        <h3>General Motors Co.<br><small>Jun–Aug 2023, Bedford, IN</small></h3>
-        <ul>
-          <li>Built badge-reading PLC system (RS Logix 5000)</li>
-          <li>Integrated machine data into online database</li>
-          <li>Developed HMI screens in FactoryTalk View</li>
-        </ul>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="role-header">
+              <h3>Audio Engineering Intern</h3>
+              <div class="company">
+                <img src="assets/linn-logo.png" alt="Linn Products" class="company-logo">
+                <span>Linn Products Ltd.</span>
+              </div>
+              <p class="date">Jun–Aug 2024, Glasgow, Scotland</p>
+            </div>
+            <ul class="role-details">
+              <li>Engineered low-noise phono stages &amp; DC bias control</li>
+              <li>Ran LTSpice analyses for noise &amp; transient performance</li>
+              <li>Designed PCBs in Altium; verified with Audio Precision APx555</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="role-header">
+              <h3>Manufacturing Engineering Intern</h3>
+              <div class="company">
+                <img src="assets/gm-logo.png" alt="General Motors" class="company-logo">
+                <span>General Motors Co.</span>
+              </div>
+              <p class="date">Jun–Aug 2023, Bedford, IN</p>
+            </div>
+            <ul class="role-details">
+              <li>Built badge-reading PLC system (RS Logix 5000)</li>
+              <li>Integrated machine data into online database</li>
+              <li>Developed HMI screens in FactoryTalk View</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
-    <!-- Projects Section -->
-    <section id="projects">
+    
+    <!-- Projects Section with interactive cards -->
+    <section id="projects" class="card-section">
       <h2><img src="assets/icons/projects.svg" alt="Projects" class="icon">Projects</h2>
-      <ul>
-        <li><strong>Electrochromic Window</strong> (Arduino, C++) – Low-power smart window controller</li>
-        <li><strong>3D Category Learning</strong> (Python) – Extended cognitive model &amp; experiments</li>
-        <li><strong>Tic-Tac-Toe AI</strong> (Embedded C) – NeoPixel matrix with AI &amp; sound</li>
-      </ul>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/projects/window.jpg" alt="Electrochromic Window">
+          </div>
+          <div class="project-content">
+            <h3>Electrochromic Window</h3>
+            <p class="project-tech">Arduino, C++</p>
+            <p>Low-power smart window controller with ambient light sensing and temperature regulation.</p>
+            <div class="project-links">
+              <a href="#" class="project-link">Details</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/projects/cognitive.jpg" alt="3D Category Learning">
+          </div>
+          <div class="project-content">
+            <h3>3D Category Learning</h3>
+            <p class="project-tech">Python, NumPy, Matplotlib</p>
+            <p>Extended cognitive model for 3D space categorization with interactive visualization.</p>
+            <div class="project-links">
+              <a href="#" class="project-link">Details</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-image">
+            <img src="assets/projects/tictactoe.jpg" alt="Tic-Tac-Toe AI">
+          </div>
+          <div class="project-content">
+            <h3>Tic-Tac-Toe AI</h3>
+            <p class="project-tech">Embedded C, Arduino</p>
+            <p>NeoPixel matrix with AI opponent and sound effects. Includes difficulty settings.</p>
+            <div class="project-links">
+              <a href="#" class="project-link">Details</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <!-- Contact Section -->
+    
+    <!-- Audio Projects Section -->
+    <section id="audio-projects" class="card-section">
+      <h2><img src="assets/icons/audio.svg" alt="Audio" class="icon">Audio Projects</h2>
+      <p>Some of my audio engineering work you can listen to:</p>
+      
+      <div class="audio-samples">
+        <div class="audio-sample">
+          <h3>Tube Preamp Demo</h3>
+          <audio controls src="assets/audio/tube-preamp.mp3"></audio>
+          <p>Comparison of clean signal vs. tube harmonics</p>
+        </div>
+        <div class="audio-sample">
+          <h3>Filter Sweep</h3>
+          <audio controls src="assets/audio/filter-sweep.mp3"></audio>
+          <p>Custom analog filter demonstration</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section with animated elements -->
     <section id="contact">
       <h2><img src="assets/icons/contact.svg" alt="Contact" class="icon">Contact</h2>
-      <p>📞 669-291-9214<br>
-      ✉️ <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a><br>
-      🔗 <a href="https://linkedin.com/in/henry-stern" target="_blank">linkedin.com/in/henry-stern</a></p>
+      <div class="contact-card">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <p>669-291-9214</p>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🔗</div>
+            <a href="https://linkedin.com/in/henry-stern" target="_blank">linkedin.com/in/henry-stern</a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <h3>Send me a message</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
+  
   <footer>
-    <p>© 2025 Henry Stern.</p>
+    <div class="container">
+      <p>© 2025 Henry Stern. Built with <span class="heart">♥</span> and lots of solder.</p>
+      <div class="footer-wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        </svg>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
