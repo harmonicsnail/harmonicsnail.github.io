@@ -1,41 +1,46 @@
 /* script.js */
-document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.querySelector('.nav-toggle');
-    const nav    = document.querySelector('.site-nav');
-    const musicBtn = document.getElementById('music-toggle');
-    const audio   = document.getElementById('bg-music');
+document.addEventListener('DOMContentLoaded',()=>{
+    const musicBtn=document.getElementById('music-toggle');
+    const audio=document.getElementById('bg-music');
+    const canvas=document.getElementById('fft-canvas');
+    const ctx=canvas.getContext('2d');
   
-    // Mobile nav toggle
-    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    // Resize canvas
+    function resizeCanvas(){
+      canvas.width=canvas.clientWidth;
+      canvas.height=canvas.clientHeight;
+    }
+    window.addEventListener('resize',resizeCanvas);
+    resizeCanvas();
   
-    // Web Audio API setup for visualizer
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioCtx = new AudioContext();
-    const track = audioCtx.createMediaElementSource(audio);
-    const analyser = audioCtx.createAnalyser();
+    // audio & visualizer setup
+    const AudioContext=window.AudioContext||window.webkitAudioContext;
+    const audioCtx=new AudioContext();
+    const track=audioCtx.createMediaElementSource(audio);
+    const analyser=audioCtx.createAnalyser();
+    analyser.fftSize=256;
     track.connect(analyser).connect(audioCtx.destination);
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    const bufferLength=analyser.frequencyBinCount;
+    const dataArray=new Uint8Array(bufferLength);
   
-    // Music play/pause toggle
-    musicBtn.addEventListener('click', () => {
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      if (audio.paused) {
-        audio.play();
-        musicBtn.classList.add('playing');
-      } else {
-        audio.pause();
-        musicBtn.classList.remove('playing');
-      }
+    // music toggle
+    musicBtn.addEventListener('click',()=>{
+      if(audioCtx.state==='suspended') audioCtx.resume();
+      if(audio.paused){ audio.play(); musicBtn.classList.add('playing'); }
+      else { audio.pause(); musicBtn.classList.remove('playing'); }
     });
   
-    // Animation loop: scale circuit nodes based on audio amplitude
-    function animate() {
+    // draw FFT
+    function drawFFT(){
+      requestAnimationFrame(drawFFT);
       analyser.getByteFrequencyData(dataArray);
-      const avg = dataArray.reduce((sum, v) => sum + v, 0) / dataArray.length;
-      const scale = 1 + avg / 200; // subtle scaling
-      document.documentElement.style.setProperty('--circuit-scale', scale);
-      requestAnimationFrame(animate);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      const barWidth=canvas.width/bufferLength;
+      for(let i=0;i<bufferLength;i++){
+        const barHeight=dataArray[i]/255*canvas.height;
+        ctx.fillStyle='var(--color-accent-dark)';
+        ctx.fillRect(i*barWidth,canvas.height-barHeight,barWidth*0.8,barHeight);
+      }
     }
-    animate();
+    drawFFT();
   });
-  

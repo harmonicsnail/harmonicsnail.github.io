@@ -2,123 +2,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic meta tags for SEO & responsive behavior -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Henry Stern | Electrical Engineer</title>
-  <!-- Link to your stylesheet -->
+  <!-- Forest-themed palette -->
   <link rel="stylesheet" href="styles.css">
-  <!-- Load JS after HTML is parsed -->
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Site header with logo/initials and nav toggler for mobile -->
+  <!-- Header with logo -->
   <header class="site-header">
     <div class="container">
-      <div class="logo">HS</div>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-      <nav class="site-nav">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <!-- Music toggle button -->
+      <!-- Logo image -->
+      <img src="assets/logo.png" alt="HS Logo" class="logo">
+      <!-- Music toggle -->
       <button id="music-toggle" class="music-toggle" aria-label="Toggle music">♪</button>
     </div>
   </header>
 
   <!-- Background audio -->
-  <audio id="bg-music" src="assets/music.mp3" loop preload="auto"></audio>
+  <audio id="bg-music" src="assets/bg-music.mp3" loop preload="auto"></audio>
 
-  <!-- Circuit animation dots -->
-  <div class="circuit-animation">
-    <span class="node"></span>
-    <span class="node"></span>
-    <span class="node"></span>
-    <span class="node"></span>
-    <span class="node"></span>
-  </div>
-
+  <!-- FFT Visualization Canvas -->
+  <canvas id="fft-canvas"></canvas>
 
   <main class="container">
-    <!-- About / Intro Section -->
+    <!-- About Section -->
     <section id="about">
+      <img src="assets/profile.jpg" alt="Profile Picture" class="profile-pic">
       <h1>Henry Stern</h1>
       <p class="subtitle">Electrical Engineer</p>
-      <p>Focused on audio electronics, PCB design, and signal processing. Always learning, always curious.</p>
+      <p>Passionate about audio electronics, PCB design, and signal processing. Always learning, always curious.</p>
     </section>
-
-    <!-- Education -->
+    <!-- Education Section -->
     <section id="education">
-      <h2>Education</h2>
+      <h2><img src="assets/icons/education.svg" alt="Education" class="icon">Education</h2>
       <p><strong>B.S. Electrical Engineering</strong>, Rose-Hulman Institute of Technology (May 2026)<br>
       GPA: 3.98/4.0<br>
-      Minors: Physics &amp; Music; Certificate: Semiconductor Materials &amp; Devices<br>
-      Awards: Heminway Scholar; Merit Scholar; Dean’s List (Sept 2022 - May 2024)</p>
+      Minors: Physics &amp; Music; Certificate: Semiconductor Materials &amp; Devices</p>
     </section>
-
-    <!-- Skills -->
+    <!-- Skills Section -->
     <section id="skills">
-      <h2>Skills</h2>
+      <h2><img src="assets/icons/skills.svg" alt="Skills" class="icon">Skills</h2>
       <ul>
-        <li><strong>Software:</strong> Altium Designer, LTSpice, PSpice, MATLAB, LabVIEW, Maple, Java, Python, Embedded C, Verilog, Quartus, Audio Precision, RS Logix 5000, FactoryTalk View</li>
-        <li><strong>Technical:</strong> PCB &amp; circuit design, automation systems, data analysis, noise optimization, signal processing, embedded systems (MSP432, Arduino), digital logic</li>
-        <li><strong>Activities:</strong> IEEE HKN, MakerLab, Rose-Hulman Jazz Band, RHIThm, Synthesizer Club</li>
+        <li><strong>Software:</strong> Altium, LTSpice, MATLAB, LabVIEW, Java, Python, Embedded C</li>
+        <li><strong>Technical:</strong> PCB design, automation, signal processing, embedded systems</li>
+        <li><strong>Activities:</strong> IEEE HKN, Synth Club, Jazz Band</li>
       </ul>
     </section>
-
-    <!-- Professional Experience -->
+    <!-- Experience Section -->
     <section id="experience">
-      <h2>Internship Experience</h2>
-
+      <h2><img src="assets/icons/experience.svg" alt="Experience" class="icon">Experience</h2>
       <div class="role">
-        <h3>Linn Products Ltd. – Electrical Engineering Intern</h3>
-        <p class="meta">Optical Vinyl Cartridge Development | Glasgow, Scotland | Jun 2024 - Aug 2024</p>
+        <h3>Linn Products Ltd.<br><small>Jun–Aug 2024, Glasgow, Scotland</small></h3>
         <ul>
-          <li>Engineered high-fidelity phono stages, optimizing for ultra-low-noise &amp; DC bias control</li>
-          <li>Ran LTSpice noise, frequency &amp; transient analyses for current sources &amp; RIAA stages</li>
-          <li>Designed schematics &amp; PCBs in Altium with focus on SNR</li>
-          <li>Selected audio op-amps and sourced EMI filtering capacitors</li>
-          <li>Verified performance with Audio Precision APx555</li>
-          <li>Resolved LP-12 turntable control-loop speed issue via oscilloscope diagnostics</li>
+          <li>Engineered low-noise phono stages &amp; DC bias control</li>
+          <li>Ran LTSpice analyses for noise &amp; transient performance</li>
+          <li>Designed PCBs in Altium; verified with Audio Precision APx555</li>
         </ul>
       </div>
-
       <div class="role">
-        <h3>General Motors Co. – Controls &amp; Electrical Engineering Intern</h3>
-        <p class="meta">Automation &amp; PLC | Bedford, IN | Jun 2023 - Aug 2023</p>
+        <h3>General Motors Co.<br><small>Jun–Aug 2023, Bedford, IN</small></h3>
         <ul>
-          <li>Built badge-reading system with RS Logix 5000 to boost plant security &amp; tracking</li>
-          <li>Integrated die-cast machine data into an online database</li>
-          <li>Created real-time visualization screens in FactoryTalk View</li>
+          <li>Built badge-reading PLC system (RS Logix 5000)</li>
+          <li>Integrated machine data into online database</li>
+          <li>Developed HMI screens in FactoryTalk View</li>
         </ul>
       </div>
     </section>
-
-    <!-- Projects -->
+    <!-- Projects Section -->
     <section id="projects">
-      <h2>Project Experience</h2>
+      <h2><img src="assets/icons/projects.svg" alt="Projects" class="icon">Projects</h2>
       <ul>
-        <li><strong>Electrochromic Window Research</strong> (Arduino, C++, LTSpice) – Prototyped smart window controller; optimized low-power switching.</li>
-        <li><strong>3D Category Learning</strong> (Python, NumPy, jsPsych) – Extended Nosofsky model; ran custom cognition experiments.</li>
-        <li><strong>Tic-Tac-Toe Game</strong> (MSP432, Embedded C) – Built NeoPixel matrix enclosure; implemented AI &amp; sound effects.</li>
-        <li><strong>Genetic Algorithm Research</strong> (Java, UML, LaTeX) – Developed OOP GA editor &amp; visualizer; simulated mutation, elitism, crossover.</li>
+        <li><strong>Electrochromic Window</strong> (Arduino, C++) – Low-power smart window controller</li>
+        <li><strong>3D Category Learning</strong> (Python) – Extended cognitive model &amp; experiments</li>
+        <li><strong>Tic-Tac-Toe AI</strong> (Embedded C) – NeoPixel matrix with AI &amp; sound</li>
       </ul>
     </section>
-
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p>📞 669-291-9214  ✉️ <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a><br>
+      <h2><img src="assets/icons/contact.svg" alt="Contact" class="icon">Contact</h2>
+      <p>📞 669-291-9214<br>
+      ✉️ <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a><br>
       🔗 <a href="https://linkedin.com/in/henry-stern" target="_blank">linkedin.com/in/henry-stern</a></p>
     </section>
   </main>
-
   <footer>
-    <p>© 2025 Henry Stern. Crafted with care.</p>
+    <p>© 2025 Henry Stern.</p>
   </footer>
 </body>
 </html>
