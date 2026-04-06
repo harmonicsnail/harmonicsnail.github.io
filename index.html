@@ -1,338 +1,702 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Henry Stern | Electrical Engineer</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <title>Henry Stern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --text: #1a1a14;
+      --muted: #7a7a68;
+      --accent: #2e6b42;
+      --border: #d8d6ce;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+
+    /* ── Layout ── */
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .wrap {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .name {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .tagline {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── Nav ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    nav .wrap {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* ── Section ── */
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── About ── */
+    .bio {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .bio strong { font-weight: 400; }
+
+    .now-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .now-list li {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .now-list li::before {
+      content: '→ ';
+      color: var(--accent);
+    }
+
+    /* ── Experience ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-bottom: 0.15rem;
+    }
+
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+      text-align: right;
+    }
+
+    .exp-details {
+      list-style: none;
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .exp-details li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .exp-details li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── Projects ── */
+    .project-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .project-tech {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-links a:hover { text-decoration: underline; }
+
+    /* ── Skills ── */
+    .skills-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-line {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.2rem 0;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    .skills-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin: 1.25rem 0 0.6rem;
+    }
+
+    .skills-label:first-child { margin-top: 0; }
+
+    /* ── Audio ── */
+    .audio-viz {
+      margin-bottom: 1.5rem;
+    }
+
+    #fft-canvas {
+      width: 100%;
+      height: 64px;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: rgba(46, 107, 66, 0.03);
+    }
+
+    .audio-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    #music-toggle {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.3rem 0.75rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #music-toggle:hover, #music-toggle.playing {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .eq-controls {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .eq-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .eq-ctrl label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      min-width: 2rem;
+    }
+
+    .eq-ctrl input[type="range"] {
+      width: 64px;
+      height: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .audio-samples {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sample-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1rem;
+      align-items: start;
+    }
+
+    .sample-name {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      padding-top: 0.2rem;
+      white-space: nowrap;
+    }
+
+    .sample-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 0.1rem;
+    }
+
+    .sample-player {
+      grid-column: 1 / -1;
+      margin-top: 0.4rem;
+    }
+
+    .sample-player audio {
+      width: 100%;
+      height: 28px;
+    }
+
+    /* ── Contact ── */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-list li {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+
+    .contact-list .label {
+      color: var(--muted);
+      display: inline-block;
+      min-width: 5rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem 0 3rem;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .skills-block { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-date { text-align: left; }
+      .project-header { flex-direction: column; gap: 0.2rem; }
+      .eq-controls { gap: 0.75rem; }
+      .eq-ctrl input[type="range"] { width: 48px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header with logo -->
-  <header class="site-header">
-    <div class="container">
-      <!-- Logo image with animated pulse -->
-      <div class="logo-container">
-        <img src="assets/logo.png" alt="HS Logo" class="logo">
-        <div class="logo-pulse"></div>
-      </div>
-      
-      <!-- Navigation -->
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      
-      <!-- Music toggle with animated icon -->
-      <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
-        <span class="music-icon">♪</span>
-      </button>
+  <audio id="bg-music" src="assets/bg-music.mp3" loop preload="auto"></audio>
+
+  <header>
+    <div class="wrap">
+      <span class="name">Henry Stern</span>
+      <span class="tagline">Electrical Engineer — Rose-Hulman '26</span>
     </div>
   </header>
 
-  <!-- Background audio -->
-  <audio id="bg-music" src="assets/bg-music.mp3" loop preload="auto"></audio>
-
-  <!-- FFT Visualization Canvas with controls -->
-  <div class="visualizer-container">
-    <canvas id="fft-canvas"></canvas>
-    <div class="audio-controls">
-      <div class="control">
-        <label for="bass-control">Bass</label>
-        <input type="range" id="bass-control" min="0" max="100" value="50">
-      </div>
-      <div class="control">
-        <label for="mid-control">Mid</label>
-        <input type="range" id="mid-control" min="0" max="100" value="50">
-      </div>
-      <div class="control">
-        <label for="treble-control">Treble</label>
-        <input type="range" id="treble-control" min="0" max="100" value="50">
-      </div>
+  <nav>
+    <div class="wrap">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#audio">audio</a>
+      <a href="#contact">contact</a>
     </div>
-  </div>
+  </nav>
 
-  <main class="container">
-    <!-- About Section with animated typing -->
-    <section id="about" class="card-section">
-      <div class="profile-card">
-        <img src="assets/profile.jpg" alt="Profile Picture" class="profile-pic">
-        <div class="profile-text">
-          <h1>Henry Stern</h1>
-          <p class="subtitle">Electrical Engineer</p>
-          <p id="typing-text">Passionate about audio electronics, PCB design, and signal processing. Always learning, always curious.</p>
-        </div>
+  <main class="wrap">
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <p class="bio">
+        EE student at Rose-Hulman with a focus on <strong>audio electronics</strong>, PCB design, and signal processing. 
+        Minor in Physics and Music — which is less surprising than it sounds. 
+        I like things that are precise and things that sound good, and I spend most of my time at the intersection of both.
+      </p>
+      <ul class="now-list">
+        <li>Reading: <em>Designing Audio Power Amplifiers</em> — Bob Cordell</li>
+        <li>Building: Tube Preamp with Remote Control</li>
+        <li>Listening to: Jazz & Electronic</li>
+        <li>GPA: 3.98 &nbsp;·&nbsp; IEEE HKN &nbsp;·&nbsp; Synth Club &nbsp;·&nbsp; Jazz Band</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+
+      <div class="exp-item">
+        <div class="exp-role">Audio Engineering Intern</div>
+        <div class="exp-date">Jun–Aug 2024</div>
+        <div class="exp-company">Linn Products Ltd. — Glasgow, Scotland</div>
+        <ul class="exp-details">
+          <li>Engineered low-noise phono stages & DC bias control</li>
+          <li>LTSpice analysis for noise & transient performance</li>
+          <li>PCB design in Altium, verified with Audio Precision APx555</li>
+        </ul>
       </div>
-      
-      <!-- Current status/mood -->
-      <div class="status-card">
-        <h3>Currently...</h3>
-        <ul class="status-list">
-          <li><span class="status-icon">📚</span> Reading: "Designing Audio Power Amplifiers" by Bob Cordell</li>
-          <li><span class="status-icon">🔧</span> Building: Tube Preamp with Remote Control</li>
-          <li><span class="status-icon">🎵</span> Listening to: Jazz & Electronic</li>
+
+      <div class="exp-item">
+        <div class="exp-role">Manufacturing Engineering Intern</div>
+        <div class="exp-date">Jun–Aug 2023</div>
+        <div class="exp-company">General Motors Co. — Bedford, IN</div>
+        <ul class="exp-details">
+          <li>Badge-reading PLC system in RS Logix 5000</li>
+          <li>Integrated machine data into online database</li>
+          <li>HMI development in FactoryTalk View</li>
         </ul>
       </div>
     </section>
-    
-    <!-- Education Section -->
-    <section id="education" class="card-section">
-      <h2><img src="assets/icons/education.svg" alt="Education" class="icon">Education</h2>
-      <div class="education-card">
-        <div class="school-logo">
-          <img src="assets/rhit-logo.png" alt="Rose-Hulman Logo">
+
+    <!-- Projects -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">Electrochromic Window Controller</span>
+          <span class="project-tech">Arduino · C++</span>
         </div>
-        <div class="education-details">
-          <h3>B.S. Electrical Engineering</h3>
-          <p>Rose-Hulman Institute of Technology (May 2026)</p>
-          <p class="education-stats">GPA: 3.98/4.0</p>
-          <p>Minors: Physics &amp; Music</p>
-          <p>Certificate: Semiconductor Materials &amp; Devices</p>
+        <p class="project-desc">Low-power smart window controller with ambient light sensing and temperature regulation.</p>
+        <div class="project-links">
+          <a href="#">details</a>
+          <a href="#">github</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">3D Category Learning Model</span>
+          <span class="project-tech">Python · NumPy · Matplotlib</span>
+        </div>
+        <p class="project-desc">Extended cognitive model for 3D space categorization with interactive visualization.</p>
+        <div class="project-links">
+          <a href="#">details</a>
+          <a href="#">github</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">Tic-Tac-Toe AI</span>
+          <span class="project-tech">Embedded C · Arduino</span>
+        </div>
+        <p class="project-desc">NeoPixel matrix with AI opponent and sound effects. Difficulty settings.</p>
+        <div class="project-links">
+          <a href="#">details</a>
+          <a href="#">github</a>
         </div>
       </div>
     </section>
-    
-    <!-- Skills Section with visual meter -->
-    <section id="skills" class="card-section">
-      <h2><img src="assets/icons/skills.svg" alt="Skills" class="icon">Skills</h2>
-      
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Software</h3>
-          <div class="skill-item">
-            <span>Altium</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>LTSpice</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>MATLAB</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>Python</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>Embedded C</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>Technical</h3>
-          <div class="skill-item">
-            <span>PCB Design</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 92%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>Signal Processing</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 88%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>Circuit Design</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
-          </div>
-          <div class="skill-item">
-            <span>Embedded Systems</span>
-            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
-          </div>
-        </div>
+
+    <!-- Skills -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <p class="skills-label">Software</p>
+      <div class="skills-block">
+        <span class="skill-line">Altium Designer</span>
+        <span class="skill-line">LTSpice</span>
+        <span class="skill-line">MATLAB</span>
+        <span class="skill-line">Python</span>
+        <span class="skill-line">Embedded C</span>
+        <span class="skill-line">RS Logix 5000</span>
       </div>
-      
-      <div class="activities">
-        <h3>Activities</h3>
-        <div class="activity-icons">
-          <div class="activity-item">
-            <span class="activity-icon">🔌</span>
-            <span>IEEE HKN</span>
-          </div>
-          <div class="activity-item">
-            <span class="activity-icon">🎹</span>
-            <span>Synth Club</span>
-          </div>
-          <div class="activity-item">
-            <span class="activity-icon">🎷</span>
-            <span>Jazz Band</span>
-          </div>
-        </div>
+      <p class="skills-label">Technical</p>
+      <div class="skills-block">
+        <span class="skill-line">PCB Design</span>
+        <span class="skill-line">Signal Processing</span>
+        <span class="skill-line">Analog Circuit Design</span>
+        <span class="skill-line">Embedded Systems</span>
+        <span class="skill-line">Audio Precision APx555</span>
+        <span class="skill-line">FactoryTalk View</span>
       </div>
     </section>
-    
-    <!-- Experience Section -->
-    <section id="experience" class="card-section">
-      <h2><img src="assets/icons/experience.svg" alt="Experience" class="icon">Experience</h2>
-      
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="experience-card">
-            <div class="role-header">
-              <h3>Audio Engineering Intern</h3>
-              <div class="company">
-                <img src="assets/linn-logo.png" alt="Linn Products" class="company-logo">
-                <span>Linn Products Ltd.</span>
-              </div>
-              <p class="date">Jun–Aug 2024, Glasgow, Scotland</p>
+
+    <!-- Audio -->
+    <section id="audio">
+      <p class="section-label">Audio</p>
+
+      <div class="audio-viz">
+        <canvas id="fft-canvas"></canvas>
+        <div class="audio-row">
+          <button id="music-toggle">▶ play</button>
+          <div class="eq-controls">
+            <div class="eq-ctrl">
+              <label>bass</label>
+              <input type="range" id="bass-control" min="0" max="100" value="50">
             </div>
-            <ul class="role-details">
-              <li>Engineered low-noise phono stages &amp; DC bias control</li>
-              <li>Ran LTSpice analyses for noise &amp; transient performance</li>
-              <li>Designed PCBs in Altium; verified with Audio Precision APx555</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="experience-card">
-            <div class="role-header">
-              <h3>Manufacturing Engineering Intern</h3>
-              <div class="company">
-                <img src="assets/gm-logo.png" alt="General Motors" class="company-logo">
-                <span>General Motors Co.</span>
-              </div>
-              <p class="date">Jun–Aug 2023, Bedford, IN</p>
+            <div class="eq-ctrl">
+              <label>mid</label>
+              <input type="range" id="mid-control" min="0" max="100" value="50">
             </div>
-            <ul class="role-details">
-              <li>Built badge-reading PLC system (RS Logix 5000)</li>
-              <li>Integrated machine data into online database</li>
-              <li>Developed HMI screens in FactoryTalk View</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Projects Section with interactive cards -->
-    <section id="projects" class="card-section">
-      <h2><img src="assets/icons/projects.svg" alt="Projects" class="icon">Projects</h2>
-      
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">
-            <img src="assets/projects/window.jpg" alt="Electrochromic Window">
-          </div>
-          <div class="project-content">
-            <h3>Electrochromic Window</h3>
-            <p class="project-tech">Arduino, C++</p>
-            <p>Low-power smart window controller with ambient light sensing and temperature regulation.</p>
-            <div class="project-links">
-              <a href="#" class="project-link">Details</a>
-              <a href="#" class="project-link">GitHub</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-image">
-            <img src="assets/projects/cognitive.jpg" alt="3D Category Learning">
-          </div>
-          <div class="project-content">
-            <h3>3D Category Learning</h3>
-            <p class="project-tech">Python, NumPy, Matplotlib</p>
-            <p>Extended cognitive model for 3D space categorization with interactive visualization.</p>
-            <div class="project-links">
-              <a href="#" class="project-link">Details</a>
-              <a href="#" class="project-link">GitHub</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-image">
-            <img src="assets/projects/tictactoe.jpg" alt="Tic-Tac-Toe AI">
-          </div>
-          <div class="project-content">
-            <h3>Tic-Tac-Toe AI</h3>
-            <p class="project-tech">Embedded C, Arduino</p>
-            <p>NeoPixel matrix with AI opponent and sound effects. Includes difficulty settings.</p>
-            <div class="project-links">
-              <a href="#" class="project-link">Details</a>
-              <a href="#" class="project-link">GitHub</a>
+            <div class="eq-ctrl">
+              <label>treble</label>
+              <input type="range" id="treble-control" min="0" max="100" value="50">
             </div>
           </div>
         </div>
       </div>
-    </section>
-    
-    <!-- Audio Projects Section -->
-    <section id="audio-projects" class="card-section">
-      <h2><img src="assets/icons/audio.svg" alt="Audio" class="icon">Audio Projects</h2>
-      <p>Some of my audio engineering work you can listen to:</p>
-      
+
       <div class="audio-samples">
-        <div class="audio-sample">
-          <h3>Tube Preamp Demo</h3>
-          <audio controls src="assets/audio/tube-preamp.mp3"></audio>
-          <p>Comparison of clean signal vs. tube harmonics</p>
+        <div class="sample-row">
+          <span class="sample-name">Tube Preamp Demo</span>
+          <span class="sample-desc">Clean signal vs. tube harmonics</span>
+          <div class="sample-player"><audio controls src="assets/audio/tube-preamp.mp3"></audio></div>
         </div>
-        <div class="audio-sample">
-          <h3>Filter Sweep</h3>
-          <audio controls src="assets/audio/filter-sweep.mp3"></audio>
-          <p>Custom analog filter demonstration</p>
+        <div class="sample-row">
+          <span class="sample-name">Filter Sweep</span>
+          <span class="sample-desc">Custom analog filter demonstration</span>
+          <div class="sample-player"><audio controls src="assets/audio/filter-sweep.mp3"></audio></div>
         </div>
       </div>
     </section>
-    
-    <!-- Contact Section with animated elements -->
+
+    <!-- Contact -->
     <section id="contact">
-      <h2><img src="assets/icons/contact.svg" alt="Contact" class="icon">Contact</h2>
-      <div class="contact-card">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <p>669-291-9214</p>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">🔗</div>
-            <a href="https://linkedin.com/in/henry-stern" target="_blank">linkedin.com/in/henry-stern</a>
-          </div>
-        </div>
-        
-        <div class="contact-form">
-          <h3>Send me a message</h3>
-          <form id="contact-form">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
-        </div>
-      </div>
+      <p class="section-label">Contact</p>
+      <ul class="contact-list">
+        <li><span class="label">email</span> <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a></li>
+        <li><span class="label">phone</span> 669-291-9214</li>
+        <li><span class="label">linkedin</span> <a href="https://linkedin.com/in/henry-stern" target="_blank">henry-stern</a></li>
+        <li><span class="label">resume</span> <a href="assets/resume/resume.pdf">PDF</a></li>
+      </ul>
     </section>
+
   </main>
-  
+
   <footer>
-    <div class="container">
-      <p>© 2025 Henry Stern. Built with <span class="heart">♥</span> and lots of solder.</p>
-      <div class="footer-wave">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-        </svg>
-      </div>
+    <div class="wrap">
+      <p>© 2025 Henry Stern — Rose-Hulman Institute of Technology</p>
     </div>
   </footer>
+
+  <script>
+    // Audio + FFT
+    const musicBtn = document.getElementById('music-toggle');
+    const audio = document.getElementById('bg-music');
+    const canvas = document.getElementById('fft-canvas');
+    const ctx = canvas.getContext('2d');
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+
+    let track = null, analyser = null, bassFilter, midFilter, trebleFilter;
+
+    function resizeCanvas() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function setupAudio() {
+      if (track) return;
+      track = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+
+      bassFilter = audioCtx.createBiquadFilter();
+      bassFilter.type = 'lowshelf';
+      bassFilter.frequency.value = 200;
+
+      midFilter = audioCtx.createBiquadFilter();
+      midFilter.type = 'peaking';
+      midFilter.frequency.value = 1000;
+      midFilter.Q.value = 1;
+
+      trebleFilter = audioCtx.createBiquadFilter();
+      trebleFilter.type = 'highshelf';
+      trebleFilter.frequency.value = 3000;
+
+      track.connect(bassFilter);
+      bassFilter.connect(midFilter);
+      midFilter.connect(trebleFilter);
+      trebleFilter.connect(analyser);
+      analyser.connect(audioCtx.destination);
+
+      document.getElementById('bass-control').addEventListener('input', e => {
+        bassFilter.gain.value = (e.target.value - 50) / 5;
+      });
+      document.getElementById('mid-control').addEventListener('input', e => {
+        midFilter.gain.value = (e.target.value - 50) / 5;
+      });
+      document.getElementById('treble-control').addEventListener('input', e => {
+        trebleFilter.gain.value = (e.target.value - 50) / 5;
+      });
+
+      drawFFT();
+    }
+
+    function drawFFT() {
+      if (!analyser) return;
+      requestAnimationFrame(drawFFT);
+      const buf = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(buf);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width / buf.length;
+      for (let i = 0; i < buf.length; i++) {
+        const h = (buf[i] / 255) * canvas.height;
+        ctx.fillStyle = `rgba(46, 107, 66, ${0.3 + (buf[i] / 255) * 0.7})`;
+        ctx.fillRect(i * w, canvas.height - h, w * 0.85, h);
+      }
+    }
+
+    musicBtn.addEventListener('click', () => {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      setupAudio();
+      if (audio.paused) {
+        audio.play().catch(() => {});
+        musicBtn.textContent = '⏸ pause';
+        musicBtn.classList.add('playing');
+      } else {
+        audio.pause();
+        musicBtn.textContent = '▶ play';
+        musicBtn.classList.remove('playing');
+      }
+    });
+
+    // Sample players pause bg music
+    document.querySelectorAll('.sample-player audio').forEach(s => {
+      s.addEventListener('play', () => {
+        if (!audio.paused) {
+          audio.pause();
+          musicBtn.textContent = '▶ play';
+          musicBtn.classList.remove('playing');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
