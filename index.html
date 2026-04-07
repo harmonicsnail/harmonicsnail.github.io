@@ -33,14 +33,12 @@
     a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     a:hover { color: var(--accent); }
 
-    /* ── Layout ── */
     .wrap {
       max-width: 640px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* ── Header ── */
     header {
       padding: 3.5rem 0 2.5rem;
       border-bottom: 1px solid var(--border);
@@ -67,7 +65,6 @@
       color: var(--muted);
     }
 
-    /* ── Nav ── */
     nav {
       border-bottom: 1px solid var(--border);
       padding: 0.75rem 0;
@@ -92,7 +89,6 @@
 
     nav a:hover { color: var(--text); }
 
-    /* ── Section ── */
     section {
       padding: 3rem 0;
       border-bottom: 1px solid var(--border);
@@ -109,7 +105,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ── About ── */
     .bio {
       font-size: 1.05rem;
       line-height: 1.75;
@@ -137,7 +132,6 @@
       color: var(--accent);
     }
 
-    /* ── Experience ── */
     .exp-item {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -191,7 +185,6 @@
       color: var(--accent);
     }
 
-    /* ── Projects ── */
     .project-item {
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
@@ -245,7 +238,6 @@
 
     .project-links a:hover { text-decoration: underline; }
 
-    /* ── Skills ── */
     .skills-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -272,107 +264,6 @@
 
     .skills-label:first-child { margin-top: 0; }
 
-    /* ── Audio ── */
-    .audio-viz {
-      margin-bottom: 1.5rem;
-    }
-
-    #fft-canvas {
-      width: 100%;
-      height: 64px;
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: rgba(46, 107, 66, 0.03);
-    }
-
-    .audio-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
-
-    #music-toggle {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.3rem 0.75rem;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    #music-toggle:hover, #music-toggle.playing {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .eq-controls {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-    }
-
-    .eq-ctrl {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .eq-ctrl label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      min-width: 2rem;
-    }
-
-    .eq-ctrl input[type="range"] {
-      width: 64px;
-      height: 2px;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    .audio-samples {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .sample-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1rem;
-      align-items: start;
-    }
-
-    .sample-name {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      padding-top: 0.2rem;
-      white-space: nowrap;
-    }
-
-    .sample-desc {
-      font-size: 0.82rem;
-      color: var(--muted);
-      padding-top: 0.1rem;
-    }
-
-    .sample-player {
-      grid-column: 1 / -1;
-      margin-top: 0.4rem;
-    }
-
-    .sample-player audio {
-      width: 100%;
-      height: 28px;
-    }
-
-    /* ── Contact ── */
     .contact-list {
       list-style: none;
       display: flex;
@@ -391,7 +282,6 @@
       min-width: 5rem;
     }
 
-    /* ── Footer ── */
     footer {
       padding: 2rem 0 3rem;
     }
@@ -402,20 +292,15 @@
       color: var(--muted);
     }
 
-    /* ── Responsive ── */
     @media (max-width: 480px) {
       .skills-block { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; }
       .exp-date { text-align: left; }
       .project-header { flex-direction: column; gap: 0.2rem; }
-      .eq-controls { gap: 0.75rem; }
-      .eq-ctrl input[type="range"] { width: 48px; }
     }
   </style>
 </head>
 <body>
-
-  <audio id="bg-music" src="assets/bg-music.mp3" loop preload="auto"></audio>
 
   <header>
     <div class="wrap">
@@ -429,7 +314,7 @@
       <a href="#about">about</a>
       <a href="#experience">experience</a>
       <a href="#projects">projects</a>
-      <a href="#audio">audio</a>
+      <a href="#skills">skills</a>
       <a href="#contact">contact</a>
     </div>
   </nav>
@@ -440,15 +325,11 @@
     <section id="about">
       <p class="section-label">About</p>
       <p class="bio">
-        EE student at Rose-Hulman with a focus on <strong>audio electronics</strong>, PCB design, and signal processing. 
-        Minor in Physics and Music — which is less surprising than it sounds. 
-        I like things that are precise and things that sound good, and I spend most of my time at the intersection of both.
+        EE student at Rose-Hulman with a focus on <strong>audio electronics</strong>, PCB design, and signal processing.
       </p>
       <ul class="now-list">
-        <li>Reading: <em>Designing Audio Power Amplifiers</em> — Bob Cordell</li>
-        <li>Building: Tube Preamp with Remote Control</li>
-        <li>Listening to: Jazz & Electronic</li>
-        <li>GPA: 3.98 &nbsp;·&nbsp; IEEE HKN &nbsp;·&nbsp; Synth Club &nbsp;·&nbsp; Jazz Band</li>
+        <li>Listening to: <a href="https://open.spotify.com/playlist/YOUR_PLAYLIST_ID" target="_blank" rel="noopener">BCNR and Geese</a></li>
+        <li>GPA: 3.97 &nbsp;·&nbsp; IEEE HKN &nbsp;·&nbsp; RHIThm A Cappella &nbsp;·&nbsp; Rose Barbershop Quartet</li>
       </ul>
     </section>
 
@@ -457,24 +338,35 @@
       <p class="section-label">Experience</p>
 
       <div class="exp-item">
-        <div class="exp-role">Audio Engineering Intern</div>
-        <div class="exp-date">Jun–Aug 2024</div>
-        <div class="exp-company">Linn Products Ltd. — Glasgow, Scotland</div>
+        <div class="exp-role">Digital Electronics Intern</div>
+        <div class="exp-date">Jun–Aug 2025</div>
+        <div class="exp-company">Shure Inc. — Niles, IL</div>
         <ul class="exp-details">
-          <li>Engineered low-noise phono stages & DC bias control</li>
-          <li>LTSpice analysis for noise & transient performance</li>
-          <li>PCB design in Altium, verified with Audio Precision APx555</li>
+          <li>Validated FPGA interface signal integrity for next-gen audio conferencing hardware using HyperLynx</li>
+          <li>Fabricated 3 mechanical test PCBs in Xpedition; designed automated test fixture board in five working days</li>
+          <li>Routed signals on single layer to minimize via stubs, improving SI and manufacturability</li>
         </ul>
       </div>
 
       <div class="exp-item">
-        <div class="exp-role">Manufacturing Engineering Intern</div>
+        <div class="exp-role">Electrical Engineering Intern</div>
+        <div class="exp-date">Jun–Aug 2024</div>
+        <div class="exp-company">Linn Products Ltd. — Glasgow, Scotland</div>
+        <ul class="exp-details">
+          <li>Engineered high-fidelity phono preamplifiers for DS Audio optical vinyl cartridges</li>
+          <li>LTSpice noise, frequency, and transient analyses for RIAA equalization stages</li>
+          <li>PCB design in Altium; performance verified with Audio Precision APx555</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-role">Controls & Electrical Engineering Intern</div>
         <div class="exp-date">Jun–Aug 2023</div>
         <div class="exp-company">General Motors Co. — Bedford, IN</div>
         <ul class="exp-details">
-          <li>Badge-reading PLC system in RS Logix 5000</li>
-          <li>Integrated machine data into online database</li>
-          <li>HMI development in FactoryTalk View</li>
+          <li>Badge-reading PLC system in RS Logix 5000 for plant security and productivity logging</li>
+          <li>Integrated die-cast machine process data into graphical online database</li>
+          <li>HMI development in FactoryTalk View for real-time casting visualization</li>
         </ul>
       </div>
     </section>
@@ -485,10 +377,22 @@
 
       <div class="project-item">
         <div class="project-header">
-          <span class="project-name">Electrochromic Window Controller</span>
-          <span class="project-tech">Arduino · C++</span>
+          <span class="project-name">Oscilloscope Music</span>
+          <span class="project-tech">PureData · Reaper · MIDI · DSP</span>
         </div>
-        <p class="project-desc">Low-power smart window controller with ambient light sensing and temperature regulation.</p>
+        <p class="project-desc">Custom PureData VST instruments driving x–y oscilloscope channels to render Lissajous curves, 3D rotations, and scripted text in live performance.</p>
+        <div class="project-links">
+          <a href="#">details</a>
+          <a href="#">github</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">Supercapacitor Battery Pack</span>
+          <span class="project-tech">Power Electronics · PCB</span>
+        </div>
+        <p class="project-desc">Dual-PCB system with capacitor balancing and power control supplying 12V/5.5V. Integrated wired (5A) and wireless inductive (1A) charging into an autonomous vehicle.</p>
         <div class="project-links">
           <a href="#">details</a>
           <a href="#">github</a>
@@ -500,7 +404,7 @@
           <span class="project-name">3D Category Learning Model</span>
           <span class="project-tech">Python · NumPy · Matplotlib</span>
         </div>
-        <p class="project-desc">Extended cognitive model for 3D space categorization with interactive visualization.</p>
+        <p class="project-desc">Extended Nosofsky's cognitive model to 3D stimulus space; ran custom jsPsych experiments and interpreted results alongside Python model outputs.</p>
         <div class="project-links">
           <a href="#">details</a>
           <a href="#">github</a>
@@ -510,9 +414,9 @@
       <div class="project-item">
         <div class="project-header">
           <span class="project-name">Tic-Tac-Toe AI</span>
-          <span class="project-tech">Embedded C · Arduino</span>
+          <span class="project-tech">Embedded C · MSP432</span>
         </div>
-        <p class="project-desc">NeoPixel matrix with AI opponent and sound effects. Difficulty settings.</p>
+        <p class="project-desc">NeoPixel matrix with AI opponent, difficulty settings, and sound effects. Perfboard build in a translucent custom enclosure.</p>
         <div class="project-links">
           <a href="#">details</a>
           <a href="#">github</a>
@@ -523,62 +427,39 @@
     <!-- Skills -->
     <section id="skills">
       <p class="section-label">Skills</p>
-      <p class="skills-label">Software</p>
+      <p class="skills-label">ECAD & Simulation</p>
       <div class="skills-block">
+        <span class="skill-line">Xpedition Designer</span>
+        <span class="skill-line">HyperLynx SI</span>
         <span class="skill-line">Altium Designer</span>
-        <span class="skill-line">LTSpice</span>
+        <span class="skill-line">KiCAD</span>
+        <span class="skill-line">LTSpice / PSpice</span>
+        <span class="skill-line">CST Studio Suite</span>
+      </div>
+      <p class="skills-label">Programming</p>
+      <div class="skills-block">
         <span class="skill-line">MATLAB</span>
         <span class="skill-line">Python</span>
         <span class="skill-line">Embedded C</span>
+        <span class="skill-line">LabVIEW</span>
+        <span class="skill-line">Java</span>
         <span class="skill-line">RS Logix 5000</span>
+      </div>
+      <p class="skills-label">Test & Measurement</p>
+      <div class="skills-block">
+        <span class="skill-line">Vector Network Analyzers</span>
+        <span class="skill-line">Audio Precision APx555</span>
+        <span class="skill-line">Oscilloscopes</span>
+        <span class="skill-line">Function Generators</span>
       </div>
       <p class="skills-label">Technical</p>
       <div class="skills-block">
-        <span class="skill-line">PCB Design</span>
-        <span class="skill-line">Signal Processing</span>
+        <span class="skill-line">PCB Layout</span>
+        <span class="skill-line">Signal Integrity</span>
         <span class="skill-line">Analog Circuit Design</span>
+        <span class="skill-line">Antenna Design</span>
         <span class="skill-line">Embedded Systems</span>
-        <span class="skill-line">Audio Precision APx555</span>
-        <span class="skill-line">FactoryTalk View</span>
-      </div>
-    </section>
-
-    <!-- Audio -->
-    <section id="audio">
-      <p class="section-label">Audio</p>
-
-      <div class="audio-viz">
-        <canvas id="fft-canvas"></canvas>
-        <div class="audio-row">
-          <button id="music-toggle">▶ play</button>
-          <div class="eq-controls">
-            <div class="eq-ctrl">
-              <label>bass</label>
-              <input type="range" id="bass-control" min="0" max="100" value="50">
-            </div>
-            <div class="eq-ctrl">
-              <label>mid</label>
-              <input type="range" id="mid-control" min="0" max="100" value="50">
-            </div>
-            <div class="eq-ctrl">
-              <label>treble</label>
-              <input type="range" id="treble-control" min="0" max="100" value="50">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="audio-samples">
-        <div class="sample-row">
-          <span class="sample-name">Tube Preamp Demo</span>
-          <span class="sample-desc">Clean signal vs. tube harmonics</span>
-          <div class="sample-player"><audio controls src="assets/audio/tube-preamp.mp3"></audio></div>
-        </div>
-        <div class="sample-row">
-          <span class="sample-name">Filter Sweep</span>
-          <span class="sample-desc">Custom analog filter demonstration</span>
-          <div class="sample-player"><audio controls src="assets/audio/filter-sweep.mp3"></audio></div>
-        </div>
+        <span class="skill-line">Failure Analysis</span>
       </div>
     </section>
 
@@ -587,7 +468,6 @@
       <p class="section-label">Contact</p>
       <ul class="contact-list">
         <li><span class="label">email</span> <a href="mailto:sternsh@rose-hulman.edu">sternsh@rose-hulman.edu</a></li>
-        <li><span class="label">phone</span> XXX-XXX-XXXX</li>
         <li><span class="label">linkedin</span> <a href="https://linkedin.com/in/henry-stern" target="_blank">henry-stern</a></li>
         <li><span class="label">resume</span> <a href="assets/resume/resume.pdf">PDF</a></li>
       </ul>
@@ -600,103 +480,6 @@
       <p>© 2025 Henry Stern — Rose-Hulman Institute of Technology</p>
     </div>
   </footer>
-
-  <script>
-    // Audio + FFT
-    const musicBtn = document.getElementById('music-toggle');
-    const audio = document.getElementById('bg-music');
-    const canvas = document.getElementById('fft-canvas');
-    const ctx = canvas.getContext('2d');
-
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioCtx = new AudioContext();
-
-    let track = null, analyser = null, bassFilter, midFilter, trebleFilter;
-
-    function resizeCanvas() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function setupAudio() {
-      if (track) return;
-      track = audioCtx.createMediaElementSource(audio);
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 256;
-
-      bassFilter = audioCtx.createBiquadFilter();
-      bassFilter.type = 'lowshelf';
-      bassFilter.frequency.value = 200;
-
-      midFilter = audioCtx.createBiquadFilter();
-      midFilter.type = 'peaking';
-      midFilter.frequency.value = 1000;
-      midFilter.Q.value = 1;
-
-      trebleFilter = audioCtx.createBiquadFilter();
-      trebleFilter.type = 'highshelf';
-      trebleFilter.frequency.value = 3000;
-
-      track.connect(bassFilter);
-      bassFilter.connect(midFilter);
-      midFilter.connect(trebleFilter);
-      trebleFilter.connect(analyser);
-      analyser.connect(audioCtx.destination);
-
-      document.getElementById('bass-control').addEventListener('input', e => {
-        bassFilter.gain.value = (e.target.value - 50) / 5;
-      });
-      document.getElementById('mid-control').addEventListener('input', e => {
-        midFilter.gain.value = (e.target.value - 50) / 5;
-      });
-      document.getElementById('treble-control').addEventListener('input', e => {
-        trebleFilter.gain.value = (e.target.value - 50) / 5;
-      });
-
-      drawFFT();
-    }
-
-    function drawFFT() {
-      if (!analyser) return;
-      requestAnimationFrame(drawFFT);
-      const buf = new Uint8Array(analyser.frequencyBinCount);
-      analyser.getByteFrequencyData(buf);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const w = canvas.width / buf.length;
-      for (let i = 0; i < buf.length; i++) {
-        const h = (buf[i] / 255) * canvas.height;
-        ctx.fillStyle = `rgba(46, 107, 66, ${0.3 + (buf[i] / 255) * 0.7})`;
-        ctx.fillRect(i * w, canvas.height - h, w * 0.85, h);
-      }
-    }
-
-    musicBtn.addEventListener('click', () => {
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      setupAudio();
-      if (audio.paused) {
-        audio.play().catch(() => {});
-        musicBtn.textContent = '⏸ pause';
-        musicBtn.classList.add('playing');
-      } else {
-        audio.pause();
-        musicBtn.textContent = '▶ play';
-        musicBtn.classList.remove('playing');
-      }
-    });
-
-    // Sample players pause bg music
-    document.querySelectorAll('.sample-player audio').forEach(s => {
-      s.addEventListener('play', () => {
-        if (!audio.paused) {
-          audio.pause();
-          musicBtn.textContent = '▶ play';
-          musicBtn.classList.remove('playing');
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
