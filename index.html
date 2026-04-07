@@ -20,6 +20,14 @@
       --sans: 'IBM Plex Sans', sans-serif;
     }
 
+    html[data-theme="dark"] {
+      --bg: #1a1a1a;
+      --text: #f0f0f0;
+      --muted: #a0a0a0;
+      --accent: #7fa8b8;
+      --border: #333333;
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -306,6 +314,32 @@
       color: var(--muted);
     }
 
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
+      background: var(--border);
+    }
+
+    .theme-toggle-icon {
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+
     /* Modal Styles */
     .modal-overlay {
       display: none;
@@ -326,7 +360,7 @@
 
     .modal-content {
       position: relative;
-      background: white;
+      background: var(--bg);
       border-radius: 8px;
       width: 90%;
       max-width: 1200px;
@@ -410,7 +444,12 @@
   <header>
     <div class="wrap">
       <span class="name">Henry Stern</span>
-      <span class="tagline">Electrical Engineer — Rose-Hulman '26</span>
+      <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <span class="tagline">Electrical Engineer — Rose-Hulman '26</span>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+          <span class="theme-toggle-icon">☀️</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -616,6 +655,37 @@
   </div>
 
   <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('.theme-toggle-icon');
+    const htmlElement = document.documentElement;
+
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      
+      setTheme(theme);
+    }
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.removeAttribute('data-theme');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    initializeTheme();
+
     const modalOverlay = document.getElementById('modalOverlay');
     const modalClose = document.getElementById('modalClose');
     const modalTitle = document.getElementById('modalTitle');
