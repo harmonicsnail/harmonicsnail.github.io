@@ -293,11 +293,98 @@
       color: var(--muted);
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      position: relative;
+      background: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-file-viewer {
+      flex: 1;
+      overflow: auto;
+      position: relative;
+    }
+
+    .modal-file-viewer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-file-viewer video {
+      width: 100%;
+      height: auto;
+      max-height: calc(85vh - 3rem);
+      display: block;
+    }
+
+    .project-links a {
+      cursor: pointer;
+    }
+
     @media (max-width: 480px) {
       .skills-block { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; }
       .exp-date { text-align: left; }
       .project-header { flex-direction: column; gap: 0.2rem; }
+      .modal-content { width: 95%; max-height: 90vh; }
     }
   </style>
 </head>
@@ -499,6 +586,69 @@
       <p>© 2025 Henry Stern — Rose-Hulman Institute of Technology</p>
     </div>
   </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">File</span>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-file-viewer" id="modalViewer"></div>
+    </div>
+  </div>
+
+  <script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalViewer = document.getElementById('modalViewer');
+
+    // Close modal when clicking the X button
+    modalClose.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+    });
+
+    // Close modal when clicking the background/overlay
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
+    });
+
+    // Handle project link clicks
+    document.querySelectorAll('.project-links a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        const filename = href.split('/').pop();
+        const fileType = filename.split('.').pop().toLowerCase();
+        
+        // Update modal title with filename
+        modalTitle.textContent = filename;
+        
+        // Clear previous content
+        modalViewer.innerHTML = '';
+
+        // Display appropriate content based on file type
+        if (fileType === 'pdf') {
+          const iframe = document.createElement('iframe');
+          iframe.src = href;
+          modalViewer.appendChild(iframe);
+        } else if (fileType === 'mp4' || fileType === 'webm' || fileType === 'mov') {
+          const video = document.createElement('video');
+          video.controls = true;
+          video.src = href;
+          modalViewer.appendChild(video);
+        } else {
+          modalViewer.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--muted);">Unable to preview this file type. <a href="${href}" target="_blank">Download instead</a></div>`;
+        }
+
+        // Show modal
+        modalOverlay.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
